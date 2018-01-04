@@ -2,7 +2,7 @@
   "name": "vue-webpack",
   "version": "1.0.0",
   "description": "A Vue.js project",
-  "author": "何坦宏 <hetanhong@mofanghr.com>",
+  "author": "wangchunting <wangchunting7@163.com>",
   "private": true,
   "scripts": {
     "dev": "cross-env NODE_ENV=development webpack --watch",
@@ -10,12 +10,6 @@
     "build": "cross-env NODE_ENV=production webpack --progress --hide-modules"
   },
   "dependencies": {
-    "mint-ui": "^2.2.7",
-    "qrcode": "^0.8.2",
-    "vue": "^2.2.6",
-    "vue-router": "^2.3.1",
-    "vuex": "^2.3.1",
-    "weixin-js-sdk": "^1.2.0"
   },
   "devDependencies": {
     "autoprefixer": "^6.7.2",

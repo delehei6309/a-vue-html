@@ -3,7 +3,7 @@
  */
 import Vue from 'vue';
 import Base from '../containers/Base';
-import 'flex.css/dist/flex.css';
+//import 'flex.css/dist/flex.css';
 import '../less/base.less';
 new Vue({
     el: '#app',

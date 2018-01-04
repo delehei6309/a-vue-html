@@ -45,7 +45,7 @@ const config = {
         path: path.resolve('./dist'),
         filename: '[name].js',
         chunkFilename: '[id].chunk.js',
-        publicPath: '/dist/'
+        publicPath: '../dist/'
     },
     resolve: {
         extensions: ['.js', '.vue', '.json'],
@@ -118,7 +118,7 @@ if (env == 'production' || env == 'test') {
     config.devtool = '';
     config.output.publicPath = '/dist/';
     if (env === 'production') {
-        config.output.publicPath = 'https://zj-static.zj-hf.cn/land/';
+        config.output.publicPath = 'https://****/land/';
     }
     config.output.filename = '[name].[chunkhash:8].js';
     config.output.chunkFilename = '[chunkhash:8].[id].chunk.js';
