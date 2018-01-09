@@ -24,7 +24,7 @@ files.map(file => {
     let entryJS = file.replace('.js', '');
     entry[entryJS] = `./views/${file}`;
     let htmlConfig = {
-        title: titles[entryJS],
+        title: titles[entryJS] || '清风缥缪',
         favicon: './images/logo.png',
         chunks: ['ventor', entryJS],
         inject: 'body',

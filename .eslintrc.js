@@ -28,7 +28,8 @@ module.exports = {
         'document': true,
         'Math':true,
         'module':true,
-        '__dirname':true
+        '__dirname':true,
+        'AOS':true,
     },
     // add your custom rules here
     'rules': {
