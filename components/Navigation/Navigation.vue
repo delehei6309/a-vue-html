@@ -1,17 +1,25 @@
 <template>
     <div class="navigation-box">
         <div class="nav-content box-width clear">
-            <div class="nav-menus">
-                <div class="menus-view">全部分类</div>
-                <div class="menu-list">
+            <div class="nav-menus" @mouseenter="navItemsShow = true" @mouseleave="navItemsShow=false">
+                <div class="menus-view"><span>全部分类</span></div>
+                <div v-show="navItemsShow" class="menu-list">
                     <ul>
-                        li
+                        <li v-for="item in navItems" @mouseenter="item.show = true" @mouseleave="item.show=false">
+                            <div class="nav-item-view">{{item.title}}</div>
+                            <div v-show="item.show" class="nav-child clear">
+                                <template v-if="item.children && item.children.length>0">
+                                    <div v-for="nav in item.children" class="nav-child-view"><a href="">{{nav.title}}</a></div>
+                                </template>
+                                <template v-else>暂无内容</template>
+                            </div>
+                        </li>
                     </ul>
                 </div>
             </div>
             <ul class="nav-items clear">
-                <li v-for="item in items">
-                    {{item.title}}
+                <li v-for="item in menus">
+                    <a href="">{{item.title}}</a>
                 </li>
             </ul>
         </div>
@@ -28,7 +36,7 @@
         //props:['navItems'],
         data(){
             return {
-                items:[
+                menus:[
                     {
                         title:'中超',
                         id:1
@@ -51,6 +59,62 @@
                         title:'中冀投资',
                         id:7
                     }
+                ],
+                navItemsShow:false,
+                navItems:[
+                    {
+                        title:'罗纳尔迪尼奥',
+                        id:1,
+                        show:false,
+                        children:[
+                            {
+                                title:'郭德纲',
+                                id:1
+                            },{
+                                title:'于谦',
+                                id:1
+                            },{
+                                title:'于谦',
+                                id:1
+                            },{
+                                title:'于谦',
+                                id:1
+                            },{
+                                title:'于谦',
+                                id:1
+                            },{
+                                title:'于谦',
+                                id:1
+                            },{
+                                title:'于谦',
+                                id:1
+                            }
+                        ]
+                    },{
+                        title:'诺维斯基',
+                        id:2,
+                        show:false,
+                        children:[
+                            {
+                                title:'精细鬼'
+                            },{
+                                title:'伶俐虫'
+                            },{
+                                title:'精细鬼'
+                            },{
+                                title:'伶俐虫'
+                            },{
+                                title:'奔波儿灞'
+                            },{
+                                title:'霸波尔奔'
+                            }
+                        ]
+                    },{
+                        title:'克里斯蒂亚诺',
+                        id:3,
+                        show:false,
+                        children:[]
+                    }
                 ]
             }
         },
@@ -59,41 +123,6 @@
         },
         computed: {},
         methods: {
-            mouseenterEvent(item,index){
-                /*if(index == 0){
-                    //首页没有子导航
-                    return false;
-                }
-                let url = '/index/cate/moveOnCate.html';
-                if(index == 1){
-                    //产品
-                    url = '/index/product_cate/getProductCateList.html';
-                }
-                let cateid = item.id;
-                console.log(cateid);
-                if(!item.children || item.children.length<1){
-                    $api.post(url,{cateid}).then((res)=>{
-                        if(res.code == 200){
-                            item.children = res.data.secondCateList;
-                            if(index == 1){
-                                //产品真是特殊
-                                item.children = res.data.productCateList;
-                            }
-                        }else{
-                            Toast(res.message || '服务器错误！');
-                        }
-                    });
-                }
-                console.log(item.children);
-                item.show = true;*/
-            },
-            mouseleaveEvent(item){
-                item.show = false;
-                console.log(item.show)
-            },
-            navChange(item){
-                //item.val == this.activeVal ? this.activeVal = '' : this.activeVal = item.val;
-            }
         },
         destroyed(){
 

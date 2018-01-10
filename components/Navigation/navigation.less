@@ -10,15 +10,74 @@
         .nav-menus{
             width:220px;
             position: relative;
-            .menu-view{
+            .menus-view{
+                position: relative;
+                width:100%;
+                height:50px;
                 background-color:#fff;
+                background-image:url('http://bjchuangyezhe.com/Public/images/icon4.png');
+                background-repeat: no-repeat;
+                background-position: 52px 50%;
                 color:#009fe8;
-                border:1px solid #d3d3d3;
+                
+                span{
+                    display: block;
+                    width:100%;
+                    position: absolute;
+                    left:0;
+                    top:0;
+                    border:1px solid #d3d3d3;
+                    padding-left: 22px;
+                    margin-top:-1px;
+                }
             }
             .menu-list{
                 position: absolute;
                 left: 0;
                 top:100%;
+                width:100%;
+                z-index: 96;
+                ul{
+                    li{
+                        padding-left:30%;
+                        background: rgba(0,0,0,0.4);
+                        font-size: 16px;
+                        height:60px;
+                        line-height: 60px;
+                        color: #fff;
+                        border-bottom: 1px solid rgba(255,255,255,0.6);
+                        transition-duration:.4s;
+                        .nav-item-view{
+                            text-align: left;
+                        }
+                        &:hover{
+                            background:rgba(255,255,255,0.8);
+                            padding-left:35%;
+                            color:#333;
+                        }
+                        .nav-child{
+                            position: absolute;
+                            top:0;
+                            width: 200%;
+                            left:100%;
+                            z-index: 99;
+                            background-color:#fff;
+                            .nav-child-view{
+                                width:50%;
+                                padding:0 10px;
+                                a{
+                                    color: inherit;
+                                    display: block;
+                                    text-decoration: none;
+                                    &:hover{
+                                        background:#2da1d7;color:#fff;
+                                    }
+                                }
+                            }
+
+                        }
+                    }
+                }
             }
         }
         .nav-items{
@@ -26,6 +85,43 @@
             li{
                 width:120px;
                 color:#333;
+                margin-right: 2px;
+                position: relative;
+                &:after{
+                    content:"";
+                    border-left: 1px solid #eee;
+                    border-right: 1px solid #c2c2c2;
+                    height: 20px;
+                    position: absolute;
+                    left:100%;
+                    top:50%;
+                    margin-top:-10px;
+                }
+                a{
+                    display: block;
+                    color:inherit;
+                    text-decoration: none;
+                    position: relative;
+                    transition-duration:.2s;
+                    &:before{
+                        content: "";
+                        border-left: 6px solid transparent;
+                        border-right: 6px solid transparent;
+                        border-top: 7px solid #fff;
+                        position: absolute;
+                        top: 0;
+                        left: 50%;
+                        margin-left: -6px;
+                        opacity: 0;
+                        transition-duration:.3s;
+                    }
+                    &:hover{
+                        color:#009fe8;
+                        &:before{
+                            opacity: 1;
+                        }
+                    }
+                }
             }
         }
     }

@@ -1,81 +1,124 @@
 <template>
-    <div class="swiper-box">
-        <swiper :options="swiperOption" ref="mySwiper">
-            <swiper-slide v-for="(item,index) in swiperItems">
-                <router-link :to="{path:'#'}"><img :src="item" alt=""></router-link>
-            </swiper-slide>
-            <div class="swiper-pagination"  slot="pagination"></div>
-            <div class="swiper-button-prev" slot="button-prev"></div>
-            <div class="swiper-button-next" slot="button-next"></div>
-            <!--<div class="swiper-scrollbar"   slot="scrollbar"></div>-->
-        </swiper>
+    <div class="swiper-box" @mouseenter="mouseenter" @mouseleave="mouseleave">
+        <!-- css3实现 -->
+        <div class="swiper-wrap clear" 
+            :style="{
+                width:swiperItems.length*100+'%',
+                transform:`translateX(${-(100*activeIndex/swiperItems.length)}%)`,
+                transitionDuration:`${duration}ms`
+            }">
+            <div v-for="item in swiperItems" :style="{width:(100/swiperItems.length)+'%'}">
+                <img :src="item.src" :alt="item.title">
+            </div>
+        </div>
+        <div>{{activeIndex}}</div>
+        <div class="navigation">
+            <span class="navigation-prev" @click.stop="prev">‹</span>
+            <span class="navigation-next" @click.stop="next">›</span>
+        </div>
     </div>
 </template>
 
 <script>
-    import 'swiper/dist/css/swiper.css';
     import './swiper.less';
-    import { swiper, swiperSlide } from 'vue-awesome-swiper';
-    const banner1 = require('../../images/banner/banner1.jpg');
-    const banner2 = require('../../images/banner/banner2.jpg');
-    const banner3 = require('../../images/banner/banner3.jpg');
-    const banner4 = require('../../images/banner/banner4.jpg');
-    const banner5 = require('../../images/banner/banner5.jpg');
-    /*const pic2 = require('../../images/picture/pic2.jpg');
-    const pic3 = require('../../images/picture/pic3.jpg');
-    const pic4 = require('../../images/picture/pic4.jpg');
-    const friend1 = require('../../images/friend1.jpg');
-    const friend2 = require('../../images/friend2.jpg');
-    const friend3 = require('../../images/friend3.jpg');*/
     export default {
         name: 'swiper-demo',
         props:['scrollItems','viewSize'],
         data(){
             return {
-                swiperItems:[banner1,banner2,banner3,banner4,banner5],
-                swiperOption:{
-                    /*autoplay: {
-                        delay: 3000,
-                        disableOnInteraction:false,
-
-                    },*/
-                    loop:true,
-                    centeredSlides:true,
-                    slidesPerView:2,
-                    pagination: {
-                        el: '.swiper-pagination',
-                        clickable:true,
-                    },
-                    navigation: {
-                        nextEl: '.swiper-button-next',
-                        prevEl: '.swiper-button-prev',
-                    },
-                    on:{
-                        init:function(){
-                            this.slides[2].className="swiper-slide swiper-slide-active";//第一次打开不要动画
-                        },
-                    },
-                    breakpoints: {
-                        668: {
-                            slidesPerView: 1,
-                        }
+                swiperItems:[
+                    {
+                        title:'马云',
+                        src:'http://bjchuangyezhe.com/Public/uploads/Ad/2017-09-14/59b9f6aa27724.JPG'
+                    },{
+                        title:'王健林',
+                        src:'http://bjchuangyezhe.com/Public//uploads/Ad/2017-09-30/59cf2acf7e92b.jpg'
+                    },{
+                        title:'马化腾',
+                        src:'http://bjchuangyezhe.com/Public//uploads/Ad/2017-09-14/59b9e8963ae25.JPG'
                     }
-
-                }
+                ],
+                //translateX:-25,
+                activeIndex:1,
+                duration:0,
+                config:{
+                    duration:800,//默认动画持续时间0.8s;
+                    time:1800,//默认动画间隔时间1.8s;
+                },
+                suspend:false,//true 为暂停;
             }
         },
         created(){
-            //this.compatible();
+            this.duration = this.config.duration;
+            this.time = this.config.time;
+            this.swiperItems.push(this.swiperItems[0]);
+            this.swiperItems.unshift(this.swiperItems[this.swiperItems.length-1]);
+            this.animate();
         },
         components: {
-            swiper,swiperSlide
+           
         },
         mounted(){
 
         },
         computed: {},
         methods: {
-
+            animate(){
+                //css3实现方法
+                this.timer = setInterval(this.next,this.config.time);
+            },
+            mouseenter(){
+                clearInterval(this.timer);
+            },
+            mouseleave(){
+                this.animate();
+            },
+            prev(){
+                if(!this.setTimeFun(this.config.duration)){
+                    return false;
+                }
+                if(this.activeIndex == 1){
+                    this.duration = 0;
+                    this.activeIndex = this.swiperItems.length-1
+                    setTimeout(()=>{
+                        this.duration = this.config.duration;
+                        this.activeIndex -- ;
+                    },100);
+                    return false;
+                }
+                this.duration = this.config.duration;
+                this.activeIndex -- ;
+            },
+            next(){
+                if(this.activeIndex == (this.swiperItems.length-1)){
+                    this.duration = 0;
+                    this.activeIndex = 1;
+                    setTimeout(()=>{
+                        this.duration = this.config.duration;
+                        this.activeIndex ++ ;
+                    },100);
+                    return false;
+                }else{
+                    this.duration = this.config.duration;
+                    this.activeIndex ++ ;
+                }
+            },
+            //搞一个某时间段内不可点击的fun
+            setTimeFun(timeLong){
+                if(this.time0){
+                    let time2 = new Date().getTime();
+                    if(time2>this.time1){
+                        this.time0 = 0;
+                        this.time1 = 0;
+                        return true;
+                    }
+                    return false;
+                }else{
+                    this.time0 = new Date().getTime();
+                    this.time1 = this.time0 + timeLong;
+                    return true;
+                }
+            }
         },
         destroyed(){
 

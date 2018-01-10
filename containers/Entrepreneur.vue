@@ -2,6 +2,10 @@
     <div class="entrepreneur">
         <index-header></index-header>
         <navigation-box></navigation-box>
+        <div class="banner">
+            <!--轮播-->
+            <swiper></swiper>
+        </div>
         <!-- <div>
             <div id="aos-demo" class="aos-all">
                 <div class="aos-item"  style="width:100px;height:100px;" v-for="item in itemList"  data-aos="flip-left">
@@ -15,6 +19,7 @@
 <script>
     import IndexHeader from '../components/IndexHeader'
     import NavigationBox from '../components/Navigation'
+    import Swiper from '../components/Swiper'
     export default {
         name: 'entrepreneur',
         data(){
@@ -52,7 +57,7 @@
         },
         computed: {},
         components:{
-            IndexHeader,NavigationBox
+            IndexHeader,NavigationBox,Swiper
         },
         methods: {},
         destroyed(){
