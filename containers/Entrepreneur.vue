@@ -1,16 +1,20 @@
 <template>
     <div class="entrepreneur">
-        <div>
+        <index-header></index-header>
+        <navigation-box></navigation-box>
+        <!-- <div>
             <div id="aos-demo" class="aos-all">
                 <div class="aos-item"  style="width:100px;height:100px;" v-for="item in itemList"  data-aos="flip-left">
                     <div class="aos-item__inner" style="width:100%;height:100%;background-color:tomato;"><h3>12345</h3></div>
                 </div>
             </div>
-        </div>
+        </div> -->
     </div>
 </template>
 
 <script>
+    import IndexHeader from '../components/IndexHeader'
+    import NavigationBox from '../components/Navigation'
     export default {
         name: 'entrepreneur',
         data(){
@@ -47,6 +51,9 @@
             //setInterval(addItem, 300);
         },
         computed: {},
+        components:{
+            IndexHeader,NavigationBox
+        },
         methods: {},
         destroyed(){
 

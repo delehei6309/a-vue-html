@@ -3,6 +3,7 @@
  */
 import Vue from 'vue';
 import Entrepreneur from '../containers/Entrepreneur';
+import '../less/base.less';
 import '../less/entrepreneur.less';
 new Vue({
     el: '#app',

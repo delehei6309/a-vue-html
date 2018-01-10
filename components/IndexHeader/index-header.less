@@ -1,0 +1,75 @@
+@charset "UTF-8";
+@import "../../less/variables";
+
+.index-header {
+    .header-top{
+        padding-top:10px;
+        //height:30px;
+        line-height: 30px;
+        border-bottom: @border-default;
+        .box-width{
+            padding:0 15px;
+
+        }
+        .right-items{
+            .item{
+                padding:0 15px;
+            }
+            .other{
+                padding-left:10px;
+                >div:not(:last-child){
+                    margin-right:20px;
+                }
+                .iconfont{
+                    font-size: 20px;
+                    cursor: pointer;
+                    &:hover{
+                        color:#32b2ed;
+                    }
+                }
+                div{
+                    position: relative;
+                    .weixin-code{
+                        position: absolute;
+                        right:0;
+                        top:100%;
+                        width:150px;
+                    
+                    }
+                }
+            }
+        }
+    }
+    .header-bottom{
+        .logo{
+            padding:20px 0;
+            img{
+                height:60px;
+            }
+        }
+        .nav-right{
+            padding-top:22px;
+            ul{
+                margin-right:40px;
+                padding-top:8px;
+                li{
+                    padding-left:50px;
+                    margin-left: 30px;
+                    font-size: 15px;
+
+                }
+            }
+            .telephone-box{
+                h6{
+                    font-size: 14px;
+                    font-weight: normal;
+                }
+                p{
+                    font-size: 35px;
+                    color: #32b2ed;
+                    font-weight: bold;
+                }
+            }
+        }
+    }
+}
