@@ -1,5 +1,5 @@
 <template>
-    <div class="entrepreneur aos-all" id="aos-demo">
+    <div class="entrepreneur aos-all">
         <index-header></index-header>
         <navigation-box></navigation-box>
         <div class="banner">
@@ -19,17 +19,17 @@
                         </div> -->
                         <swiper :options="swiperOption" ref="mySwiper">
                             <swiper-slide v-for="item in teamItems">
-                                <div><img :src="item.src" alt=""></div>
+                                <div><img :src="item.src" alt="" style="height:150px"></div>
                                 <div>{{item.name}}</div>
                             </swiper-slide>
                         </swiper>
                     </div>
                 </div>
-                <div class="team box-width">
+                <div class="team box-width" id="aos-demo">
                     <h6>项目推荐</h6>
                     <div class="project-items">
-                        <ul class="clear">
-                            <li v-for="item in itemList"  class="aos-item aos-init aos-animate" data-aos="flip-left">
+                        <ul flex>
+                            <li v-for="item in itemList"  class="aos-item aos-init aos-animate"  aos="fade-zoom-in" aos-offset="200" aos-easing="ease-in-sine" aos-duration="600">
                                 <img :src="item.src" class="aos-item__inner" alt="">
                             </li>
                         </ul>
@@ -48,11 +48,16 @@
             </div>
         </div>
         <div>
-            <!-- <div id="aos-demo" class="aos-all"> -->
+            <div id="aos-demo" class="aos-all clear">
                 <div class="aos-item"  style="width:100px;height:100px;" v-for="item in itemList"  data-aos="flip-left">
                     <div class="aos-item__inner" style="width:100%;height:100%;background-color:tomato;"><h3>12345</h3></div>
                 </div>
-            <!-- </div> -->
+                <!-- <ul class="clear">
+                    <li v-for="item in itemList"  class="aos-item aos-init aos-animate" data-aos="flip-left">
+                        <img :src="item.src" class="aos-item__inner" alt="">
+                    </li>
+                </ul> -->
+            </div>
         </div>
     </div>
 </template>
@@ -137,13 +142,13 @@
             }
         },
         created(){
-            AOS.init({
+            
+            /*AOS.init({
                 offset: 200,
                 duration: 600,
                 easing: 'ease-in-sine',
                 delay: 100,
-            });
-
+            });*/
             var itemsCounter = 1;
             var container = document.getElementById('aos-demo');
             
@@ -170,6 +175,7 @@
         },
         methods: {},
         mounted(){
+            
             /*监听滑动事件*/
             /*let swiper = this.$refs.swiper;
             var hammer = new Hammer(swiper);

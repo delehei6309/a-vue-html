@@ -13,11 +13,30 @@
     <title> <%= htmlWebpackPlugin.options.title %> </title>
     <link rel="stylesheet" type="text/css" href="http://at.alicdn.com/t/font_208034_fdm64eip0fre8kt9.css">
     <link rel="stylesheet" type="text/css" href="../static/aos.css">
+    <link href="../umeditor/themes/default/css/umeditor.css" type="text/css" rel="stylesheet">
 </head>
 <body>
-<div id="app">
-    <div id="continer"></div>
-</div>
-    <script src="../static/aos.js"></script>
+    <div id="app"></div>
+    <script>
+        var protocol = window.location.protocol;
+        var Kop = {
+            serverUrl: protocol + '//10.10.10.80:8891'
+        };
+        var env = '<%=htmlWebpackPlugin.options.env %>';
+        if (env == 'test') {
+            Kop.serverUrl = protocol + '//mgt-kop-test.zj-hf.cn:8891';
+        }
+        if (env == 'test2') {
+            Kop.serverUrl = protocol + '//mgt-kop-test2.zj-hf.cn:8891';
+        }
+        if (env == 'production') {
+            Kop.serverUrl = protocol + '//zj-mgt-kop.zj-hf.cn';
+        }
+
+    </script>
+    <script type="text/javascript" src="../umeditor/third-party/jquery.min.js"></script>
+    <script type="text/javascript" charset="utf-8" src="../umeditor/umeditor.config.js?v=<%=htmlWebpackPlugin.options.version%>"></script>
+    <script type="text/javascript" charset="utf-8" src="../umeditor/umeditor.min.js"></script>
+    <script type="text/javascript" src="../umeditor/lang/zh-cn/zh-cn.js"></script>
 </body>
 </html>

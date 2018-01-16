@@ -30,6 +30,7 @@ module.exports = {
         'module':true,
         '__dirname':true,
         'AOS':true,
+        'UM':true
     },
     // add your custom rules here
     'rules': {
