@@ -13,9 +13,27 @@
             return {}
         },
         created(){
+            this.addUmScript();
         },
         computed: {},
         methods: {
+            addUmScript(){
+                let scriptArr = ['/third-party/jquery.min.js','/umeditor.config.js','/umeditor.min.js','/lang/zh-cn/zh-cn.js'];
+                let index = 0;
+                let addScript = ()=>{
+                    let script = document.createElement("script");
+                    script.type = 'text/javascript';
+                    script.src = '../umeditor'+scriptArr[index];
+                    document.body.appendChild(script);
+                    script.onload=function(){
+                        if(index < (scriptArr.length-1)){
+                            index ++;
+                            addScript();
+                        }
+                    }
+                }
+                addScript();
+            },
             getUM(){
                 if(window.UM){
                     this.um = UM.getEditor('myEditor');
@@ -23,7 +41,7 @@
                         //this.sync();
                     });*/
                 }else {
-                    setTimeout(this.getUM,2000);
+                    setTimeout(this.getUM,50);
                 }
             },
             setContent(){
