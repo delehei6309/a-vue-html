@@ -12,8 +12,10 @@
         },
         created(){
         },
+        components:{},
         computed: {},
         methods: {},
+        mounted(){},
         destroyed(){
 
         }

@@ -25,6 +25,7 @@ files.map(file => {
     entry[entryJS] = `./views/${file}`;
     let htmlConfig = {
         title: titles[entryJS] || '清风缥缪',
+        env,
         favicon: './images/logo.png',
         chunks: ['ventor', entryJS],
         inject: 'body',
